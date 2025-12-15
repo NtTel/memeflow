@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -43,5 +44,31 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    /**
+     * Отношение: у пользователя может быть много постов.
+     * Связь One-to-Many (один пользователь -> много постов).
+     */
+    public function posts(): HasMany
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    /**
+     * Отношение: у пользователя может быть много комментариев.
+     * Связь One-to-Many (один пользователь -> много комментариев).
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Отношение: у пользователя может быть много взаимодействий.
+     * Связь One-to-Many (один пользователь -> много взаимодействий).
+     */
+    public function interactions(): HasMany
+    {
+        return $this->hasMany(Interaction::class);
     }
 }
