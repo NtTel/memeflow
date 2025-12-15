@@ -38,9 +38,9 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => storage_path('app/public'),
-            'url' => env('APP_URL').'/storage',
-            'visibility' => 'public',
+            'root' => storage_path('app/public'), // файлы будут храниться тут
+            'url' => env('APP_URL') . '/storage', // доступны по URL /storage/...
+            'visibility' => 'public', // файлы публично доступны
             'throw' => false,
         ],
 
