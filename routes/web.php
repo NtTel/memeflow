@@ -24,4 +24,19 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Роут для смены языка
+Route::post('/locale', function (\Illuminate\Http\Request $request) {
+    $locale = $request->input('locale');
+
+    // Проверяем, что выбранный язык валидный
+    if (in_array($locale, ['ru', 'en', 'uk'])) {
+        // Сохраняем выбор в сессию
+        $request->session()->put('locale', $locale);
+    }
+
+    // Возвращаем пользователя обратно на предыдущую страницу
+    return back();
+})->name('locale.set');
+
+
+require __DIR__ . '/auth.php';

@@ -78,11 +78,13 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'ru', // язык по умолчанию — русский
 
-    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'en'),
+    'fallback_locale' => 'en', // запасной язык, если перевод не найден
 
-    'faker_locale' => env('APP_FAKER_LOCALE', 'en_US'),
+    'faker_locale' => 'ru_RU',
+
+    'available_locales' => ['ru', 'en', 'uk'],
 
     /*
     |--------------------------------------------------------------------------

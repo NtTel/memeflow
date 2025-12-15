@@ -34,6 +34,13 @@ class HandleInertiaRequests extends Middleware
             'auth' => [
                 'user' => $request->user(),
             ],
+            // Передаём текущий язык
+            'locale' => app()->getLocale(),
+
+            // Передаём все переводы из lang/xx/app.php
+            'translations' => fn() => [
+                'app' => trans('app'),
+            ],
         ];
     }
 }
