@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm } from '@inertiajs/react';
-import { PageProps } from '@/types';
 import { useTranslations } from '@/hooks/useTranslations';
 
 /**
@@ -13,7 +12,7 @@ import { useTranslations } from '@/hooks/useTranslations';
  * - Загрузку медиа-файлов (изображения, видео, PDF)
  */
 
-export default function Create({ auth }: PageProps) {
+export default function Create() {
     const { t } = useTranslations();
     const { data, setData, post, processing, errors } = useForm({
         title: '',
