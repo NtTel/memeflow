@@ -16,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 // Главная страница: лента постов
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
 
-// Просмотр одного поста
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-
 // Переключение языка
 
 
@@ -63,10 +60,7 @@ Route::prefix('admin')
         Route::delete('/posts/{post}/reject', [AdminController::class, 'reject'])->name('posts.reject');
     });
 
-/*
-|--------------------------------------------------------------------------
-| Роуты аутентификации (из Breeze)
-|--------------------------------------------------------------------------
-*/
+// Просмотр одного поста
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 require __DIR__ . '/auth.php';
