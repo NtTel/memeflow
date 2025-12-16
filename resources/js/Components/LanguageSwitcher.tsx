@@ -1,12 +1,9 @@
 import React from 'react';
-import { useForm, usePage } from '@inertiajs/react';
-import { useTranslations } from '@/hooks/useTranslations';
+import { router, usePage } from '@inertiajs/react';
 
 /**
  * Компонент переключателя языка.
- *
- * Отображает кнопки RU/EN/UA для смены языка интерфейса.
- * При клике отправляет POST-запрос на /locale с выбранным языком.
+ * Отправляет POST-запрос на /locale для смены языка в сессии.
  */
 
 const LANGUAGES = [
@@ -16,14 +13,19 @@ const LANGUAGES = [
 ];
 
 export default function LanguageSwitcher() {
-    const { locale } = useTranslations();
-    const { post } = useForm();
+    const { locale } = usePage<{ locale: string }>().props;
 
     const handleLanguageChange = (newLocale: string) => {
-        post(route('locale.set'), {
-            data: { locale: newLocale },
-            preserveScroll: true, // не скроллим страницу после смены языка
-        });
+        // Используем router.post вместо useForm
+        router.post(
+            '/locale',
+            { locale: newLocale },
+            {
+                preserveScroll: true, // не скроллим страницу
+                preserveState: true, // сохраняем состояние
+                only: ['locale', 'translations'], // обновляем только нужные пропсы
+            }
+        );
     };
 
     return (

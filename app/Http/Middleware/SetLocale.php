@@ -19,10 +19,14 @@ class SetLocale
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Получаем язык из сессии или используем дефолтный
+        // Получаем язык из сессии или дефолтный
         $locale = $request->session()->get('locale', config('app.locale'));
 
-        // Проверяем, что язык валидный
+        // ВРЕМЕННЫЙ ДЕБАГ - потом удалить
+        \Log::info('Current locale: ' . $locale);
+        \Log::info('Session locale: ' . $request->session()->get('locale', 'not set'));
+
+        // Проверяем валидность
         if (in_array($locale, ['ru', 'en', 'uk'])) {
             app()->setLocale($locale);
         }
