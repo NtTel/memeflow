@@ -1,8 +1,6 @@
-import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { PageProps, Post, PaginatedData } from '@/types';
-import { useTranslations } from '@/hooks/useTranslations';
 import PostGallery from '@/Components/PostGallery';
 
 /**
@@ -18,9 +16,7 @@ type Props = PageProps<{
     posts: PaginatedData<Post>;
 }>;
 
-export default function Drafts({ auth, posts }: Props) {
-    const { t } = useTranslations();
-
+export default function Drafts({ posts }: Props) {
     return (
         <AuthenticatedLayout
             header={
@@ -110,21 +106,28 @@ export default function Drafts({ auth, posts }: Props) {
  * Карточка черновика поста с кнопками модерации.
  */
 function DraftPostCard({ post }: { post: Post }) {
-    const { post: approve, processing: approving } = useForm();
-    const { delete: reject, processing: rejecting } = useForm();
+    const [processing, setProcessing] = React.useState(false);
 
     const handleApprove = () => {
         if (confirm('Опубликовать этот пост?')) {
-            approve(route('admin.posts.approve', post.id), {
-                preserveScroll: true,
-            });
+            setProcessing(true);
+            router.post(
+                route('admin.posts.approve', post.id),
+                {},
+                {
+                    preserveScroll: true,
+                    onFinish: () => setProcessing(false),
+                }
+            );
         }
     };
 
     const handleReject = () => {
         if (confirm('Отклонить и удалить этот пост? Это действие нельзя отменить.')) {
-            reject(route('admin.posts.reject', post.id), {
+            setProcessing(true);
+            router.delete(route('admin.posts.reject', post.id), {
                 preserveScroll: true,
+                onFinish: () => setProcessing(false),
             });
         }
     };
@@ -177,69 +180,19 @@ function DraftPostCard({ post }: { post: Post }) {
                     <button
                         type="button"
                         onClick={handleApprove}
-                        disabled={approving || rejecting}
+                        disabled={processing}
                         className="flex-1 px-4 py-2 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                        {approving ? (
-                            <span className="flex items-center justify-center gap-2">
-                                <svg
-                                    className="animate-spin w-5 h-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <circle
-                                        className="opacity-25"
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="currentColor"
-                                        strokeWidth="4"
-                                    />
-                                    <path
-                                        className="opacity-75"
-                                        fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                    />
-                                </svg>
-                                Публикация...
-                            </span>
-                        ) : (
-                            '✓ Опубликовать'
-                        )}
+                        {processing ? 'Обработка...' : '✓ Опубликовать'}
                     </button>
 
                     <button
                         type="button"
                         onClick={handleReject}
-                        disabled={approving || rejecting}
+                        disabled={processing}
                         className="flex-1 px-4 py-2 bg-red-600 text-white font-medium rounded-lg hover:bg-red-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                        {rejecting ? (
-                            <span className="flex items-center justify-center gap-2">
-                                <svg
-                                    className="animate-spin w-5 h-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <circle
-                                        className="opacity-25"
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="currentColor"
-                                        strokeWidth="4"
-                                    />
-                                    <path
-                                        className="opacity-75"
-                                        fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                                    />
-                                </svg>
-                                Удаление...
-                            </span>
-                        ) : (
-                            '✕ Отклонить'
-                        )}
+                        ✕ Отклонить
                     </button>
 
                     <Link
@@ -253,3 +206,6 @@ function DraftPostCard({ post }: { post: Post }) {
         </div>
     );
 }
+
+// Импорт React нужен только для useState в DraftPostCard
+import React from 'react';
