@@ -60,7 +60,7 @@
 
 ```
 
-git clone https://github.com/твой-username/memeflow.git
+git clone https://github.com/NtTel/memeflow.git
 cd memeflow
 
 ```
@@ -410,16 +410,7 @@ APP_ENV=local
 
 ## 📄 Лицензия
 
-Этот проект распространяется под лицензией **MIT**. Подробности в файле [LICENSE](LICENSE).
-
----
-
-## 👤 Автор
-
-**Твоё имя**
-
--   GitHub: [@твой-username](https://github.com/твой-username)
--   Email: твой@email.com
+Этот проект распространяется под лицензией **MIT**.
 
 ---
 
