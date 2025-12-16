@@ -1,13 +1,9 @@
-import { PropsWithChildren, ReactNode } from 'react';
-import { Link } from '@inertiajs/react';
-import { User } from '@/types';
+import { PropsWithChildren, ReactNode, useState } from 'react';
+import { Link, usePage } from '@inertiajs/react';
+import { PageProps } from '@/types';
 import Dropdown from '@/Components/Dropdown';
 import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
-import { useState } from 'react';
-import LanguageSwitcher from '@/Components/LanguageSwitcher';
-// Добавляем хук для получения данных страницы
-import { usePage } from '@inertiajs/react';
 
 export default function AuthenticatedLayout({
     header,
@@ -16,7 +12,13 @@ export default function AuthenticatedLayout({
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     // Получаем данные пользователя из Inertia props
-    const user = usePage<{ auth: { user: User } }>().props.auth.user;
+    const { auth } = usePage<PageProps>().props;
+    const user = auth.user;
+
+    // Защита: если пользователь не авторизован
+    if (!user) {
+        return null;
+    }
 
     return (
         <div className="min-h-screen bg-gray-100">
@@ -59,10 +61,7 @@ export default function AuthenticatedLayout({
                             </div>
                         </div>
 
-                        <div className="hidden sm:flex sm:items-center sm:gap-4 sm:ms-6">
-                            {/* Переключатель языка */}
-                            <LanguageSwitcher />
-
+                        <div className="hidden sm:flex sm:items-center sm:ms-6">
                             {/* Выпадающее меню пользователя */}
                             <div className="relative">
                                 <Dropdown>
