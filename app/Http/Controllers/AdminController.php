@@ -11,20 +11,6 @@ use Illuminate\Http\RedirectResponse;
 class AdminController extends Controller
 {
     /**
-     * Конструктор: защищаем все методы админки.
-     * Только пользователи с is_admin = true могут сюда попасть.
-     */
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if (!$request->user() || !$request->user()->is_admin) {
-                abort(403, 'Доступ запрещён. Требуются права администратора.');
-            }
-            return $next($request);
-        });
-    }
-
-    /**
      * Страница модерации: список черновиков (предложений пользователей).
      */
     public function drafts(): Response

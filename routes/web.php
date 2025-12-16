@@ -20,13 +20,7 @@ Route::get('/', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 // Переключение языка
-Route::post('/locale', function (\Illuminate\Http\Request $request) {
-    $locale = $request->input('locale');
-    if (in_array($locale, ['ru', 'en', 'uk'])) {
-        $request->session()->put('locale', $locale);
-    }
-    return back();
-})->name('locale.set');
+
 
 /*
 |--------------------------------------------------------------------------
@@ -60,17 +54,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 |--------------------------------------------------------------------------
 */
 
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-
-    // Список черновиков на модерацию
-    Route::get('/drafts', [AdminController::class, 'drafts'])->name('drafts');
-
-    // Утвердить пост
-    Route::post('/posts/{post}/approve', [AdminController::class, 'approve'])->name('posts.approve');
-
-    // Отклонить пост
-    Route::delete('/posts/{post}/reject', [AdminController::class, 'reject'])->name('posts.reject');
-});
+Route::prefix('admin')
+    ->name('admin.')
+    ->middleware(['auth', 'admin']) // ← Добавили middleware 'admin'
+    ->group(function () {
+        Route::get('/drafts', [AdminController::class, 'drafts'])->name('drafts');
+        Route::post('/posts/{post}/approve', [AdminController::class, 'approve'])->name('posts.approve');
+        Route::delete('/posts/{post}/reject', [AdminController::class, 'reject'])->name('posts.reject');
+    });
 
 /*
 |--------------------------------------------------------------------------
