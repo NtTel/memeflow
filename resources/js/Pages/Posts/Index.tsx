@@ -1,10 +1,8 @@
-import React from 'react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link } from '@inertiajs/react';
 import { PageProps, Post, PaginatedData } from '@/types';
 import { useTranslations } from '@/hooks/useTranslations';
-import PostGallery from '@/Components/PostGallery';
 import InteractionButtons from '@/Components/InteractionButtons';
 
 /**
