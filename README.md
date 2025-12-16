@@ -1,66 +1,431 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🎨 MemeFlow
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+**MemeFlow** — платформа для публикации и модерации мемов, видео и других медиа-контентов с системой лайков, комментариев и избранного.
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-11.x-FF2D20?style=flat&logo=laravel)
+![React](https://img.shields.io/badge/React-18.x-61DAFB?style=flat&logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?style=flat&logo=typescript)
+![Inertia.js](https://img.shields.io/badge/Inertia.js-1.x-9553E9?style=flat)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?style=flat&logo=tailwind-css)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🚀 Основные возможности
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   ✅ **Публикация постов** — пользователи могут предлагать посты с галереями (изображения, видео, PDF)
+-   ✅ **Система модерации** — администраторы проверяют и одобряют посты перед публикацией
+-   ✅ **Лайки и избранное** — пользователи могут лайкать и добавлять посты в избранное
+-   ✅ **Комментарии** — обсуждения под каждым постом
+-   ✅ **Галерея медиа** — поддержка множественных файлов на один пост
+-   ✅ **Адаптивный дизайн** — корректное отображение на мобильных устройствах
+-   ✅ **Аутентификация** — регистрация, вход, восстановление пароля (Laravel Breeze)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠 Технологический стек
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Backend
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+-   **Laravel 11** — PHP-фреймворк
+-   **MySQL** — база данных
+-   **Inertia.js** — связка между Laravel и React без API
 
-## Laravel Sponsors
+### Frontend
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+-   **React 18** — UI-библиотека
+-   **TypeScript** — типизированный JavaScript
+-   **Tailwind CSS** — utility-first CSS фреймворк
+-   **Vite** — сборщик модулей
 
-### Premium Partners
+### Инфраструктура
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+-   **Laravel Breeze** — стартовый набор для аутентификации
+-   **Ziggy** — использование Laravel роутов в JavaScript
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 📦 Установка
 
-## Code of Conduct
+### Требования
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+-   PHP >= 8.2
+-   Composer
+-   Node.js >= 18
+-   MySQL >= 8.0
+-   Laragon (рекомендуется для Windows)
 
-## Security Vulnerabilities
+### Шаги установки
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+1. **Клонируй репозиторий:**
 
-## License
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+git clone https://github.com/твой-username/memeflow.git
+cd memeflow
+
+```
+
+2. **Установи зависимости PHP:**
+
+```
+
+composer install
+
+```
+
+3. **Установи зависимости Node.js:**
+
+```
+
+npm install
+
+```
+
+4. **Настрой окружение:**
+
+Скопируй файл `.env.example`:
+
+```
+
+cp .env.example .env
+
+```
+
+Отредактируй `.env` и укажи данные БД:
+
+```
+
+APP_NAME=MemeFlow
+APP_URL=http://memeflow.test
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=memeflow
+DB_USERNAME=root
+DB_PASSWORD=
+
+```
+
+5. **Создай базу данных:**
+
+В MySQL:
+
+```
+
+CREATE DATABASE memeflow CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+```
+
+6. **Сгенерируй ключ приложения:**
+
+```
+
+php artisan key:generate
+
+```
+
+7. **Запусти миграции:**
+
+```
+
+php artisan migrate
+
+```
+
+8. **Создай символическую ссылку для хранилища:**
+
+```
+
+php artisan storage:link
+
+```
+
+9. **Собери фронтенд:**
+
+```
+
+npm run dev
+
+```
+
+10. **Запусти сервер разработки:**
+
+```
+
+php artisan serve
+
+```
+
+Открой в браузере: `http://memeflow.test` (или `http://localhost:8000`)
+
+---
+
+## 🗂 Структура проекта
+
+```
+
+memeflow/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── PostController.php       \# Управление постами
+│   │   │   ├── CommentController.php    \# Комментарии
+│   │   │   ├── AdminController.php      \# Админ-панель
+│   │   │   └── InteractionController.php \# Лайки/избранное
+│   │   └── Middleware/
+│   │       ├── HandleInertiaRequests.php \# Общие пропсы Inertia
+│   │       └── IsAdmin.php               \# Проверка прав админа
+│   └── Models/
+│       ├── User.php
+│       ├── Post.php
+│       ├── Comment.php
+│       ├── Media.php
+│       ├── Like.php
+│       └── Favorite.php
+├── database/
+│   └── migrations/                       \# Миграции БД
+├── public/
+│   └── storage/                          \# Публичные файлы (media)
+├── resources/
+│   ├── js/
+│   │   ├── Components/                   \# React-компоненты
+│   │   ├── Layouts/                      \# Layouts (Authenticated, Guest)
+│   │   ├── Pages/                        \# Страницы Inertia
+│   │   │   ├── Posts/                    \# Посты (Index, Show, Create)
+│   │   │   ├── Admin/                    \# Админ-панель
+│   │   │   └── Auth/                     \# Страницы авторизации
+│   │   ├── types/                        \# TypeScript типы
+│   │   └── app.tsx                       \# Точка входа React
+│   └── views/
+│       └── app.blade.php                 \# Главный Blade-шаблон
+├── routes/
+│   └── web.php                           \# Роуты приложения
+├── storage/
+│   └── app/
+│       └── public/
+│           └── media/                    \# Загруженные медиа
+└── tailwind.config.js                    \# Конфигурация Tailwind
+
+```
+
+---
+
+## 📚 Основные роуты
+
+### Публичные
+
+-   `GET /` — Главная (лента постов)
+-   `GET /posts/{post}` — Просмотр поста
+-   `GET /register` — Регистрация
+-   `GET /login` — Вход
+
+### Авторизованные пользователи
+
+-   `GET /posts/create` — Создание поста
+-   `POST /posts` — Отправка поста на модерацию
+-   `POST /posts/{post}/comments` — Добавление комментария
+-   `POST /posts/{post}/interactions/{type}` — Лайк/избранное
+
+### Администраторы
+
+-   `GET /admin/drafts` — Список постов на модерации
+-   `POST /admin/posts/{post}/approve` — Одобрить пост
+-   `DELETE /admin/posts/{post}/reject` — Отклонить пост
+
+---
+
+## 👨‍💼 Создание администратора
+
+После регистрации установи права администратора через Tinker:
+
+```
+
+php artisan tinker
+
+```
+
+```
+
+\$user = \App\Models\User::where('email', 'admin@memeflow.test')->first();
+\$user->is_admin = true;
+\$user->save();
+exit
+
+```
+
+Или через SQL:
+
+```
+
+UPDATE users SET is_admin = 1 WHERE email = 'admin@memeflow.test';
+
+```
+
+---
+
+## 🎨 Разработка
+
+### Запуск dev-сервера
+
+```
+
+
+# Терминал 1: Laravel
+
+php artisan serve
+
+# Терминал 2: Vite (HMR для React)
+
+npm run dev
+
+```
+
+### Сборка для продакшена
+
+```
+
+npm run build
+
+```
+
+### Очистка кэша
+
+```
+
+php artisan config:clear
+php artisan cache:clear
+php artisan route:clear
+php artisan view:clear
+
+```
+
+---
+
+## 🗄 База данных
+
+### Основные таблицы
+
+-   `users` — пользователи
+-   `posts` — посты (со статусами: `draft`, `published`)
+-   `media` — медиа-файлы (изображения, видео, PDF)
+-   `comments` — комментарии к постам
+-   `likes` — лайки
+-   `favorites` — избранное
+
+### Миграции
+
+Создать новую миграцию:
+
+```
+
+php artisan make:migration create_table_name
+
+```
+
+Откатить последнюю миграцию:
+
+```
+
+php artisan migrate:rollback
+
+```
+
+---
+
+## 🔐 Безопасность
+
+-   ✅ CSRF-защита на всех формах
+-   ✅ Валидация файлов (типы, размер до 20MB)
+-   ✅ Middleware `IsAdmin` для админ-панели
+-   ✅ Санитизация пользовательского ввода
+-   ✅ Хеширование паролей (bcrypt)
+
+---
+
+## 📸 Медиа-файлы
+
+### Поддерживаемые форматы
+
+-   **Изображения:** JPG, PNG, GIF, WEBP
+-   **Видео:** MP4, WEBM, MOV
+-   **Документы:** PDF
+
+### Ограничения
+
+-   Максимальный размер файла: **20 MB**
+-   Максимальное количество файлов на пост: **10**
+
+---
+
+## 🐛 Отладка
+
+### Логи
+
+Проверь логи Laravel:
+
+```
+
+tail -f storage/logs/laravel.log
+
+```
+
+### Режим отладки
+
+В `.env`:
+
+```
+
+APP_DEBUG=true
+APP_ENV=local
+
+```
+
+> ⚠️ **Важно:** Отключи `APP_DEBUG=false` на продакшене!
+
+---
+
+## 🤝 Вклад в проект
+
+1. Форкни репозиторий
+2. Создай ветку: `git checkout -b feature/amazing-feature`
+3. Закоммить изменения: `git commit -m 'Add amazing feature'`
+4. Запуш в ветку: `git push origin feature/amazing-feature`
+5. Открой Pull Request
+
+---
+
+## 📝 TODO
+
+-   [ ] Добавить многоязычность (i18next)
+-   [ ] Реализовать поиск по постам
+-   [ ] Добавить фильтры (по популярности, дате)
+-   [ ] Пагинация с бесконечной прокруткой
+-   [ ] Уведомления (новые комментарии, ответы)
+-   [ ] Профили пользователей
+-   [ ] Экспорт постов (CSV/JSON)
+-   [ ] Система репортов (жалобы на посты)
+
+---
+
+## 📄 Лицензия
+
+Этот проект распространяется под лицензией **MIT**. Подробности в файле [LICENSE](LICENSE).
+
+---
+
+## 👤 Автор
+
+**Твоё имя**
+
+-   GitHub: [@твой-username](https://github.com/твой-username)
+-   Email: твой@email.com
+
+---
+
+## 🙏 Благодарности
+
+-   [Laravel](https://laravel.com/)
+-   [React](https://react.dev/)
+-   [Inertia.js](https://inertiajs.com/)
+-   [Tailwind CSS](https://tailwindcss.com/)
