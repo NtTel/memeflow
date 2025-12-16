@@ -14,13 +14,17 @@ type Translations = {
     app: Record<string, string>;
 };
 
-type PageProps = {
+/**
+ * Минимальный тип для пропсов, содержащих только locale и translations.
+ * Не наследуем от базового PageProps, чтобы не требовать обязательное поле auth.
+ */
+type TranslationsPageProps = {
     locale: string;
     translations: Translations;
 };
 
 export function useTranslations() {
-    const { props } = usePage<PageProps>();
+    const { props } = usePage<TranslationsPageProps>();
 
     /**
      * Функция перевода: принимает ключ вида "app.submit"
