@@ -1,9 +1,12 @@
-import React from 'react';
-import { useForm } from '@inertiajs/react';
-import { useTranslations } from '@/hooks/useTranslations';
+import { router } from '@inertiajs/react';
 
 /**
  * Компонент кнопок взаимодействия с постом (лайк и избранное).
+ *
+ * @param postId - ID поста
+ * @param likesCount - Количество лайков
+ * @param favoritesCount - Количество избранных
+ * @param isAuthenticated - Авторизован ли пользователь
  */
 
 type Props = {
@@ -19,20 +22,26 @@ export default function InteractionButtons({
     favoritesCount,
     isAuthenticated,
 }: Props) {
-    const { t } = useTranslations();
-    const { post: submitLike } = useForm();
-    const { post: submitFavorite } = useForm();
-
+    /**
+     * Обработчик взаимодействия (лайк или избранное).
+     * Если пользователь не авторизован -> редирект на логин.
+     * Если авторизован -> отправляем POST-запрос через Inertia router.
+     */
     const handleInteraction = (type: 'like' | 'favorite') => {
+        // Если не авторизован -> редирект на страницу логина
         if (!isAuthenticated) {
             window.location.href = route('login');
             return;
         }
 
-        const form = type === 'like' ? submitLike : submitFavorite;
-        form(route('interactions.toggle', { post: postId, type }), {
-            preserveScroll: true,
-        });
+        // Отправляем POST-запрос для переключения лайка/избранного
+        router.post(
+            route('interactions.toggle', { post: postId, type }),
+            {}, // data (пустой объект, т.к. нет дополнительных параметров)
+            {
+                preserveScroll: true, // не скроллим страницу после действия
+            }
+        );
     };
 
     return (
