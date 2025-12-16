@@ -16,14 +16,18 @@ export default function LanguageSwitcher() {
     const { locale } = usePage<{ locale: string }>().props;
 
     const handleLanguageChange = (newLocale: string) => {
-        // Используем router.post вместо useForm
+        if (newLocale === locale) return; // Уже выбран этот язык
+
         router.post(
             '/locale',
             { locale: newLocale },
             {
-                preserveScroll: true, // не скроллим страницу
-                preserveState: true, // сохраняем состояние
-                only: ['locale', 'translations'], // обновляем только нужные пропсы
+                preserveScroll: true,
+                preserveState: false, // ИСПРАВЛЕНО: обновляем весь state для перерисовки
+                // Принудительно перезагружаем страницу для обновления всех переводов
+                onSuccess: () => {
+                    router.reload({ only: ['locale', 'translations', 'auth'] });
+                },
             }
         );
     };
@@ -35,12 +39,13 @@ export default function LanguageSwitcher() {
                     key={lang.code}
                     type="button"
                     onClick={() => handleLanguageChange(lang.code)}
+                    disabled={locale === lang.code} // Блокируем кнопку активного языка
                     className={`
             px-3 py-1.5 text-sm font-medium rounded-lg transition-all
             ${
                 locale === lang.code
-                    ? 'bg-indigo-600 text-white shadow-md'
-                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    ? 'bg-indigo-600 text-white shadow-md cursor-default'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300 active:scale-95'
             }
           `}
                     title={lang.label}
