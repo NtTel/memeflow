@@ -1,6 +1,5 @@
 import { PropsWithChildren } from 'react';
 import { Link } from '@inertiajs/react';
-import LanguageSwitcher from '@/Components/LanguageSwitcher';
 
 export default function GuestLayout({
     children,
@@ -18,7 +17,6 @@ export default function GuestLayout({
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <LanguageSwitcher />
                             <Link
                                 href={route('login')}
                                 className="text-gray-700 hover:text-gray-900"

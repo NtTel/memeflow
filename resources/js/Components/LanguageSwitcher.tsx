@@ -1,9 +1,8 @@
-import React from 'react';
-import { router, usePage } from '@inertiajs/react';
+import { usePage, router } from '@inertiajs/react';
 
 /**
  * Компонент переключателя языка.
- * Отправляет POST-запрос на /locale для смены языка в сессии.
+ * Использует Inertia router.post для смены языка без полной перезагрузки.
  */
 
 const LANGUAGES = [
@@ -13,21 +12,20 @@ const LANGUAGES = [
 ];
 
 export default function LanguageSwitcher() {
-    const { locale } = usePage<{ locale: string }>().props;
+    const page = usePage();
+    const locale = page.props.locale as string;
 
     const handleLanguageChange = (newLocale: string) => {
-        if (newLocale === locale) return; // Уже выбран этот язык
+        if (newLocale === locale) return;
 
+        // Используем router.post с полным обновлением страницы
         router.post(
             '/locale',
             { locale: newLocale },
             {
                 preserveScroll: true,
-                preserveState: false, // ИСПРАВЛЕНО: обновляем весь state для перерисовки
-                // Принудительно перезагружаем страницу для обновления всех переводов
-                onSuccess: () => {
-                    router.reload({ only: ['locale', 'translations', 'auth'] });
-                },
+                preserveState: false, // Полностью обновляем state
+                // Убрали window.location.reload() - Inertia сам обновит пропсы
             }
         );
     };
@@ -39,7 +37,7 @@ export default function LanguageSwitcher() {
                     key={lang.code}
                     type="button"
                     onClick={() => handleLanguageChange(lang.code)}
-                    disabled={locale === lang.code} // Блокируем кнопку активного языка
+                    disabled={locale === lang.code}
                     className={`
             px-3 py-1.5 text-sm font-medium rounded-lg transition-all
             ${
@@ -47,6 +45,7 @@ export default function LanguageSwitcher() {
                     ? 'bg-indigo-600 text-white shadow-md cursor-default'
                     : 'bg-gray-200 text-gray-700 hover:bg-gray-300 active:scale-95'
             }
+            disabled:opacity-50 disabled:cursor-not-allowed
           `}
                     title={lang.label}
                 >
